@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "fmt": "prettier --write .",
     "dev": "ts-node src/index.ts",
     "dev:watch": "nodemon --watch './**/*.ts' --loader ts-node/esm --exec 'ts-node src/index.ts'",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +24,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=18.10.0"
+  },
   "dependencies": {
     "@slack/bolt": "^3.12.2",
     "dotenv": "^16.0.3",
@@ -37,6 +41,7 @@
     "@types/node": "^18.11.18",
     "@types/npmlog": "^4.1.4",
     "nodemon": "^2.0.20",
+    "prettier": "^2.8.2",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4"

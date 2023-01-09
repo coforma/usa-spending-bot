@@ -6,8 +6,13 @@ This Slackbot is built using Node.js and TypeScript, and it utilizes the API fro
 
 ## Prerequisites
 
-- nodejs v18
+- nodejs v18.10
 - npm
+
+## Current Commands
+
+- `/add-recipient [uuid]` - Add a recipient to the database along with storing all of their contract awards.
+- `/list-latest-awards [uuid]` - List the 5 latest contract awards.
 
 ## Getting Started
 
@@ -36,14 +41,14 @@ LOG_LEVEL="silly"
 ```
 
 4.Start the application in development mode
-  
+
 ```bash
 npm run dev
 ```
 
 ## Code Structure
 
-The structure below shows where to place specific new files and where to find specific types of files. All new commands should have its own file under the `commands` directory. The commands are dynamically loaded in the `index.ts`, so just add a new command and follow old ones.
+The structure below shows where to place specific new files and where to find specific types of files. All new commands should have its own file under the `commands` directory.
 
 ```bash
 ├── .env

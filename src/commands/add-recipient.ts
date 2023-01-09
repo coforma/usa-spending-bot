@@ -1,30 +1,37 @@
-import { SlackApp as app } from "../SlackApp.js";
 import { TrackedRecipient } from "../entity/TrackedRecipient.js";
 import { Award } from "../entity/Award.js";
 import { getAwards } from "../utils/get-awards.js";
 import log from "npmlog";
-import { UsaSpendingAward, UsaSpendingRecipient } from "../types/UsaSpending.js";
+import {
+  UsaSpendingAward,
+  UsaSpendingRecipient,
+} from "../types/UsaSpending.js";
 import got from "got";
+import { SlackCommand } from "../types/SlackCommand.js";
 
 // create a command to add a new entry into the sqlite database
-app.command('/add-recipient', async ({ command, ack, say }) => {
+export const addRecipient: SlackCommand = async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack();
-  const input = command.text.trim().split(' ');
-  const recipientId:string = input[0] || "";
-  let shortName:string = input[1] || "";
+
+  const input = command.text.trim().split(" ");
+  const recipientId: string = input[0] || "";
+  let shortName: string = input[1] || "";
 
   if (recipientId === "") {
     await say("Please provide a recipient id");
     return;
   }
 
-  try{
+  try {
     // query the usa spending api and get the data for the given id and add an entry into the database
     // use got to make the request
-    const { body } = await got(`https://api.usaspending.gov/api/v2/recipient/${recipientId}`, {
-      responseType: 'json',
-    });
+    const { body } = await got(
+      `https://api.usaspending.gov/api/v2/recipient/${recipientId}`,
+      {
+        responseType: "json",
+      }
+    );
 
     // check if the response is valid
     if (!body) {
@@ -43,23 +50,30 @@ app.command('/add-recipient', async ({ command, ack, say }) => {
     trackedRecipient.shortName = shortName;
     trackedRecipient.uei = (body as UsaSpendingRecipient).uei;
     trackedRecipient.duns = (body as UsaSpendingRecipient).duns;
-    trackedRecipient.totalTransactionsCount = (body as UsaSpendingRecipient).total_transactions;
-    trackedRecipient.totalTransactionDollarAmount = (body as UsaSpendingRecipient).total_transaction_amount;
+    trackedRecipient.totalTransactionsCount = (
+      body as UsaSpendingRecipient
+    ).total_transactions;
+    trackedRecipient.totalTransactionDollarAmount = (
+      body as UsaSpendingRecipient
+    ).total_transaction_amount;
 
     await trackedRecipient.save();
-    
 
     // repull the tracked recipient from the database to get the id
-    const savedRecipient = await TrackedRecipient.findOneBy({ usaSpendingRecipientId: recipientId });
+    const savedRecipient = await TrackedRecipient.findOneBy({
+      usaSpendingRecipientId: recipientId,
+    });
 
     if (savedRecipient === null) {
       throw new Error("Failed to retrieve saved recipient");
     }
 
-    await say(`Added recipient: ${trackedRecipient.name} with id: ${recipientId} now tracking all past awards.`);
+    await say(
+      `Added recipient: ${trackedRecipient.name} with id: ${recipientId} now tracking all past awards.`
+    );
 
     const awards: UsaSpendingAward["results"] = [];
-    
+
     for await (const awardsResponse of getAwards(trackedRecipient.uei)) {
       awards.push(...awardsResponse);
     }
@@ -85,6 +99,4 @@ app.command('/add-recipient', async ({ command, ack, say }) => {
     log.error("COMMAND", "Failed to complete command: %s", errMessage);
     await say(`Failed to complete command: ${errMessage}`);
   }
-  
-});
-
+};

@@ -1,17 +1,30 @@
-import "reflect-metadata"
-import { readdirSync } from "fs";
-import { config } from "./config.js"
+import "reflect-metadata";
+import log from "npmlog";
 import { AppDataSource } from "./data-source.js";
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { exit } from "process";
+import { addRecipient } from "./commands/add-recipient.js";
+import { listLatestAwards } from "./commands/list-latest-awards.js";
+import { checkLatestAwards } from "./background-jobs/check-latest-awards.js";
+import { setSlackChannel } from "./commands/set-slack-channel.js";
 
-// setup npm logger from config
-const log = config.log;
+// check if the app is running not in production
+const isLocal = process.env.NODE_ENV !== "production";
+
+/* Add functionality here */
+if (isLocal) {
+  // load environment variables from .env file
+  const { config: StartDotEnv } = await import("dotenv");
+  StartDotEnv();
+  // configure logger
+  log.level = process.env.LOG_LEVEL || "silly";
+} else {
+  // configure logger
+  log.level = process.env.LOG_LEVEL || "warn";
+}
 
 // initialize the database
 try {
-  AppDataSource.initialize();
+  await AppDataSource.initialize();
 } catch (error: unknown) {
   const errMessage = error instanceof Error ? error.message : "Unknown error";
   log.error("APP_START", "Failed to initialize database: %s", errMessage);
@@ -21,23 +34,15 @@ try {
 // initialize the Slack app
 const { SlackApp: app } = await import("./SlackApp.js");
 
-// dynamically import all commands from ./commands
-// and register them with the SlackApp
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const commandsDir = __dirname + "/commands";
-const commandFiles = readdirSync(commandsDir);
+// load all the commands
+app.command("/set-slack-channel", setSlackChannel);
+app.command("/add-recipient", addRecipient);
+app.command("/list-latest-awards", listLatestAwards);
 
-commandFiles.forEach(async (file) => {
-  if (!file.endsWith(".js")) {
-    return;
-  }
-  await import(`${commandsDir}/${file}`);
-});
+// run background job this limits the application to run on a single server for now
+checkLatestAwards(app);
 
 // Start the app
 await app.start(process.env.PORT || 3050);
 
 log.info("APP_START", "⚡️ Bolt app is running!");
-
-

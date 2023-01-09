@@ -1,5 +1,5 @@
-import got from 'got';
-import { UsaSpendingAward } from '../types/UsaSpending.js';
+import got from "got";
+import { UsaSpendingAward } from "../types/UsaSpending.js";
 
 // create pagination async generator to get all the awards for the given recipient id
 export async function* getAwards(recipientUei: string, limit: number = 10) {
@@ -8,7 +8,7 @@ export async function* getAwards(recipientUei: string, limit: number = 10) {
   const jsonBody = {
     limit,
     page,
-    "fields": [
+    fields: [
       "Award ID",
       "Recipient Name",
       "Start Date",
@@ -21,13 +21,13 @@ export async function* getAwards(recipientUei: string, limit: number = 10) {
       "recipient_id",
       "prime_award_recipient_id",
     ],
-    "filters": {
-      "award_type_codes": ["A", "B", "C", "D"],
-      "recipient_search_text": [recipientUei],
-      "time_period": [
+    filters: {
+      award_type_codes: ["A", "B", "C", "D"],
+      recipient_search_text: [recipientUei],
+      time_period: [
         {
-          "start_date": "2015-01-01",
-          "end_date": new Date().toISOString().split('T')[0],
+          start_date: "2015-01-01",
+          end_date: new Date().toISOString().split("T")[0],
         },
       ],
     },
@@ -37,10 +37,13 @@ export async function* getAwards(recipientUei: string, limit: number = 10) {
     // update the page number
     jsonBody.page = page;
 
-    const { body } = await got.post(`https://api.usaspending.gov/api/v2/search/spending_by_award/`, {
-      responseType: 'json',
-      json: jsonBody,
-    });
+    const { body } = await got.post(
+      `https://api.usaspending.gov/api/v2/search/spending_by_award/`,
+      {
+        responseType: "json",
+        json: jsonBody,
+      }
+    );
 
     // check if the response is valid
     if (!body) {

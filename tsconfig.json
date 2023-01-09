@@ -4,24 +4,20 @@
     "experimentalResolver": true
   },
   "compilerOptions": {
-      "lib": ["es2022"],
-      "target": "ES2022",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
-      "esModuleInterop": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "allowSyntheticDefaultImports": true,
-      "declaration": true,
-      "strict": true,
-      "sourceMap": true,
-      "outDir": "dist",
+    "types": ["bun-types"],
+    "lib": ["es2022"],
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "strict": true,
+    "sourceMap": true,
+    "outDir": "dist"
   },
-  "include": [
-      "src/**/*",
-  ],
-  "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

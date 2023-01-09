@@ -1,4 +1,4 @@
-import pkg from '@slack/bolt';
+import pkg from "@slack/bolt";
 const { App } = pkg;
 
 export const SlackApp = new App({

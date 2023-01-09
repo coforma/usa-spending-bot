@@ -1,4 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryColumn, BaseEntity, Index } from "typeorm"
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+  BaseEntity,
+  Index,
+} from "typeorm";
 import { Award } from "./Award.js";
 
 @Entity()

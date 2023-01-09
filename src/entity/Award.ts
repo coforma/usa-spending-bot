@@ -1,9 +1,15 @@
-import { Column, Entity, PrimaryColumn, ManyToOne, BaseEntity, Index } from "typeorm"
+import {
+  Column,
+  Entity,
+  PrimaryColumn,
+  ManyToOne,
+  BaseEntity,
+  Index,
+} from "typeorm";
 import { TrackedRecipient } from "./TrackedRecipient.js";
 
 @Entity()
 export class Award extends BaseEntity {
-
   @PrimaryColumn()
   id!: number;
 
@@ -11,7 +17,10 @@ export class Award extends BaseEntity {
   @Index({ unique: true })
   usaSpendingAwardId!: string;
 
-  @ManyToOne(() => TrackedRecipient, (trackedRecipient) => trackedRecipient.awards)
+  @ManyToOne(
+    () => TrackedRecipient,
+    (trackedRecipient) => trackedRecipient.awards
+  )
   recipient!: TrackedRecipient;
 
   @Column()
