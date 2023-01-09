@@ -4,7 +4,6 @@
     "experimentalResolver": true
   },
   "compilerOptions": {
-    "types": ["bun-types"],
     "lib": ["es2022"],
     "target": "ES2022",
     "module": "NodeNext",
