@@ -1,0 +1,8 @@
+# directories
+node_modules
+db
+dist
+
+# local files
+.env
+**/*.db
