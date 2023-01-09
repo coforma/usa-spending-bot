@@ -11,6 +11,7 @@ This Slackbot is built using Node.js and TypeScript, and it utilizes the API fro
 
 ## Current Commands
 
+- `/set-slack-channel [channel-id]` - Set a general slack channel to output when a tracked recipient receives a new award
 - `/add-recipient [uuid]` - Add a recipient to the database along with storing all of their contract awards.
 - `/list-latest-awards [uuid]` - List the 5 latest contract awards.
 
