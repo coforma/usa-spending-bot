@@ -4,7 +4,7 @@ import { SlackConfig } from "./entity/SlackConfig.js";
 import { TrackedRecipient } from "./entity/TrackedRecipient.js";
 
 export const AppDataSource = new DataSource({
-  type: "sqlite",
+  type: "better-sqlite3",
   database: process.env.DB_NAME || "./db/local.db",
   synchronize: true,
   logging: true,

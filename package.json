@@ -29,11 +29,11 @@
   },
   "dependencies": {
     "@slack/bolt": "^3.12.2",
+    "better-sqlite3": "^8.0.1",
     "dotenv": "^16.0.3",
     "got": "^12.5.3",
     "npmlog": "^7.0.1",
     "reflect-metadata": "^0.1.13",
-    "sqlite3": "^5.1.4",
     "typeorm": "^0.3.11"
   },
   "devDependencies": {

@@ -82,7 +82,7 @@ This will start the application using nodemon and ts-node, allowing for quick co
 got
 npmlog
 typeorm
-sqlite3
+better-sqlite3
 reflect-metadata
 
 ## Testing
@@ -103,7 +103,7 @@ TODO: Add deployment instructions
 - [got](https://www.npmjs.com/package/got) - Simplified HTTP requests
 - [npmlog](https://www.npmjs.com/package/npmlog) - A logging framework for Node.js with support for custom log levels and colored console output
 - [typeorm](https://typeorm.io/) - ORM for TypeScript and JavaScript (ES7, ES6, ES5). Supports MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, WebSQL databases.
-- [sqlite3](https://www.npmjs.com/package/sqlite3) - Asynchronous, non-blocking SQLite3 bindings for Node.js.
+- [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) - The fastest and simplest library for SQLite3 in Node.js.
 - [reflect-metadata](https://www.npmjs.com/package/reflect-metadata) - A polyfill for the Metadata Reflection API, part of the ECMAScript (ES) 2017 specification.
 - [nodemon](https://www.npmjs.com/package/nodemon) - Utility that will monitor for any changes in your source and automatically restart your server.
 - [ts-node](https://www.npmjs.com/package/ts-node) - TypeScript execution environment and REPL for node.
