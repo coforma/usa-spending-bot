@@ -10,7 +10,10 @@ import { App } from "@slack/bolt";
 export async function checkLatestAwards(app: App) {
   while (true) {
     // do something
-    const trackedRecipients = await TrackedRecipient.find();
+    const trackedRecipients = await TrackedRecipient.find({
+      loadEagerRelations: true,
+      relations: ["awards"],
+    });
 
     if (trackedRecipients.length === 0) {
       log.info("BACKGROUND_JOB", "No tracked recipients found.");
@@ -42,6 +45,11 @@ export async function checkLatestAwards(app: App) {
             const latestAwardStartDate = new Date(latestAwardFromDb.startDate);
             return awardStartDate > latestAwardStartDate;
           });
+
+        if (latestAwardsFromApiNotInDb.length === 0) {
+          log.info("BACKGROUND_JOB", `No new awards found for recipient id: ${trackedRecipient.usaSpendingRecipientId}, name: ${trackedRecipient.name}`);
+          continue;
+        } 
 
         // insert all the awards into the database
         const insertAwards = latestAwardsFromApiNotInDb.map((award) => {
