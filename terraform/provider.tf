@@ -2,10 +2,10 @@ terraform {
   required_version = ">= 1.3"
   backend "s3" {
     bucket = "usa-spending-bot-tfstate"
+    encrypt = true
     key    = "terraform.tfstate"
     region = "us-east-1"
     dynamodb_table = "usa-spending-bot-dynamo-lock"
-    profile = "infra"
   }
   required_providers {
     aws = {
