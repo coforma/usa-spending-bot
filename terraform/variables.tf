@@ -23,6 +23,7 @@ variable "environment" {
 variable "owner" {
   description = "The owner of the application"
   default     = "devsecops"
+  type        = string
 }
 
 // create a variable for the container service scale
