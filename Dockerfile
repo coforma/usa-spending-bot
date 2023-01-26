@@ -25,6 +25,10 @@ RUN apk upgrade --no-cache --update && \
     apk add --no-cache ca-certificates && \
     rm -rf /var/cache/apk/*
 
+COPY package.json .
+
+COPY package-lock.json .
+
 COPY healthcheck.js .
 
 COPY db ./db
