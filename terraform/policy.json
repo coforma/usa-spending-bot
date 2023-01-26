@@ -4,9 +4,10 @@
         {
             "Effect": "Allow",
             "Action": [
+                "lightsail:GetContainerImages",
                 "lightsail:CreateContainerService",
-                "lightsail:GetContainerServices",
                 "lightsail:CreateContainerServiceRegistryLogin",
+                "lightsail:GetContainerServices",
                 "lightsail:GetContainerServiceDeployments",
                 "lightsail:GetContainerServicePowers"
             ],

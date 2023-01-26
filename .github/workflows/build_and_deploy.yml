@@ -1,8 +1,9 @@
 name: build_and_deploy_service
 concurrency: "deploy"
 on:
-  push:
-    branches: ["main"]
+  release:
+    types:
+      - published
 
 env:
   SERVICE_NAME: "usa-spending-bot"
