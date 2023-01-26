@@ -7,6 +7,7 @@ on:
 env:
   SERVICE_NAME: "usa-spending-bot"
   ORG_NAME: "coforma"
+  ENVIRONMENT: "dev"
 
 jobs:
   build-service:
@@ -73,7 +74,7 @@ jobs:
 
       - name: Release to Amazon Lightsail
         env:
-          CONTAINER_SERVICE_NAME: ${{ env.SERVICE_NAME }}-dev-cs
+          CONTAINER_SERVICE_NAME: ${{ env.ENVIRONMENT }}-${{ env.SERVICE_NAME }}-cs
         run: |
           echo "Releasing to Amazon Lightsail"
 

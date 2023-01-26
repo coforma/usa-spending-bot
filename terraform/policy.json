@@ -6,6 +6,7 @@
             "Action": [
                 "lightsail:CreateContainerService",
                 "lightsail:GetContainerServices",
+                "lightsail:CreateContainerServiceRegistryLogin",
                 "lightsail:GetContainerServiceDeployments",
                 "lightsail:GetContainerServicePowers"
             ],
@@ -19,7 +20,7 @@
                 "lightsail:RegisterContainerImage",
                 "lightsail:UpdateContainerService"
             ],
-            "Resource": "arn:aws:lightsail:{AWS_REGION}:{ACCOUNT_ID}:ContainerService/usa-spending-bot-dev-cs"
+            "Resource": "arn:aws:lightsail:{AWS_REGION}:{ACCOUNT_ID}:ContainerService/dev-usa-spending-bot-cs"
         },
         {
             "Effect": "Allow",
