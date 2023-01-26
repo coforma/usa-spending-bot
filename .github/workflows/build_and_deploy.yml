@@ -39,7 +39,7 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          tags: [${{ steps.vars.outputs.image }}, ${{ steps.vars.outputs.latest }}]
+          tags: ${{ steps.vars.outputs.image }}, ${{ steps.vars.outputs.latest }}
 
     outputs:
       image: ${{ steps.vars.outputs.image }}
