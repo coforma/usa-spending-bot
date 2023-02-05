@@ -1,5 +1,5 @@
 # Build Stage 1
-FROM node:18.13-alpine3.17 AS base
+FROM node:18.14-alpine3.17 AS base
 
 WORKDIR /usr/src/app
 
@@ -17,12 +17,13 @@ COPY . .
 RUN npm run build
 
 # Build Stage 3 prod
-FROM node:18.13-alpine3.17 AS prod-stage
+FROM node:18.14-alpine3.17 AS prod-stage
 
 WORKDIR /usr/src/app
 
 RUN apk upgrade --no-cache --update && \
     apk add --no-cache ca-certificates && \
+    update-ca-certificates && \
     rm -rf /var/cache/apk/*
 
 COPY package.json .
