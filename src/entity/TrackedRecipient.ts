@@ -5,6 +5,7 @@ import {
   BaseEntity,
   Index,
   PrimaryGeneratedColumn,
+  Unique,
 } from "typeorm";
 import { Award } from "./Award.js";
 
@@ -17,6 +18,7 @@ export class TrackedRecipient extends BaseEntity {
   name!: string;
 
   @Column()
+  @Unique("recipient_short_name", ["shortName"])
   shortName!: string;
 
   @Column()

@@ -9,20 +9,20 @@ export const listLatestAwards: SlackCommand = async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack();
 
-  const recipientId: string = command.text.trim() || "";
+  const shortName: string = command.text.trim() || "";
 
-  if (recipientId === "") {
-    await say("Please provide a recipient id");
+  if (shortName === "") {
+    await say("Please provide a short name for the recipient");
     return;
   }
 
   const trackedRecipient = await TrackedRecipient.findOneBy({
-    usaSpendingRecipientId: recipientId,
+    shortName,
   });
 
   if (!trackedRecipient) {
     await say(
-      `No recipient tracked with id: ${recipientId}, Please track the recipient first using /add-recipient command`
+      `No recipient tracked with short name: ${shortName}, Please track the recipient first using \`add-recipient\` command`
     );
     return;
   }
@@ -52,7 +52,7 @@ export const listLatestAwards: SlackCommand = async ({ command, ack, say }) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: `Latest 5 awards for recipient id: ${recipientId}, name: ${trackedRecipient.name}`,
+            text: `Latest 5 awards for recipient: ${shortName}, name: ${trackedRecipient.name}`,
           },
         },
         {
