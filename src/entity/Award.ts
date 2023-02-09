@@ -1,16 +1,16 @@
 import {
   Column,
   Entity,
-  PrimaryColumn,
   ManyToOne,
   BaseEntity,
   Index,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { TrackedRecipient } from "./TrackedRecipient.js";
 
 @Entity()
 export class Award extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()

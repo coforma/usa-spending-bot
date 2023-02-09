@@ -2,15 +2,15 @@ import {
   Column,
   Entity,
   OneToMany,
-  PrimaryColumn,
   BaseEntity,
   Index,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { Award } from "./Award.js";
 
 @Entity()
 export class TrackedRecipient extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
