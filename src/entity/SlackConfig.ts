@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryColumn, BaseEntity } from "typeorm";
+import { Column, Entity, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class SlackConfig extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
