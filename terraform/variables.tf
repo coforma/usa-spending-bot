@@ -50,3 +50,38 @@ variable "container_service_is_disabled" {
   default     = false
   type        = bool
 }
+
+// create a variable for the database blueprint id
+variable "db_blueprint_id" {
+  description = "The database blueprint id"
+  default     = "mysql_8_0"
+  type        = string
+  validation {
+    condition     = contains(["mysql_8_0", "postgres_12"], var.db_blueprint_id)
+    error_message = "The database blueprint id must be one of mysql_8_0 and postgres_12."
+  }
+}
+
+// create a variable for the database bundle id
+variable "db_bundle_id" {
+  description = "The database bundle id"
+  default     = "micro_2_0"
+  type        = string
+  validation {
+    condition     = contains(["micro_2_0", "micro_ha_2_0", "small_2_0", "small_ha_2_0", "medium_2_0", "medium_ha_2_0", "large_2_0", "large_ha_2_0"], var.db_bundle_id)
+    error_message = "The database bundle id must be one of micro_2_0, small_2_0, medium_2_0, and large_2_0. All can be infixed with ha_ for high availability. (Example: micro_ha_2_0)"
+  }
+}
+
+// create a variable for apply immediately
+variable "apply_immediately" {
+  description = "Whether to apply database changes immediately or wait for the next maintenance window."
+  default     = true
+  type        = bool
+}
+
+locals {
+  underscored_environment = replace(var.environment, "-", "_")
+  underscored_application = replace(var.application, "-", "_")
+  database_app_name = "${local.underscored_environment}_${local.underscored_application}"
+}
