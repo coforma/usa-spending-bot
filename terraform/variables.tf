@@ -84,4 +84,6 @@ locals {
   underscored_environment = replace(var.environment, "-", "_")
   underscored_application = replace(var.application, "-", "_")
   database_app_name = "${local.underscored_environment}_${local.underscored_application}"
+
+  aws_lightsail_region = "${var.aws_region}a"
 }

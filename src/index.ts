@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import log from "npmlog";
-import { AppDataSource } from "./data-source.js";
+import { createDataSource, DataSourceTypeOptions } from "./data-source.js";
 import { exit } from "process";
 import { addRecipient } from "./commands/add-recipient.js";
 import { listLatestAwards } from "./commands/list-latest-awards.js";
@@ -24,6 +24,8 @@ if (isLocal) {
 
 // initialize the database
 try {
+  const type : DataSourceTypeOptions = process.env.ORM_TYPE === "mysql" ? "mysql" : "better-sqlite3"
+  const AppDataSource = createDataSource(type);
   await AppDataSource.initialize();
 } catch (error: unknown) {
   const errMessage = error instanceof Error ? error.message : "Unknown error";

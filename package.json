@@ -32,6 +32,7 @@
     "better-sqlite3": "^8.0.1",
     "dotenv": "^16.0.3",
     "got": "^12.5.3",
+    "mysql": "^2.18.1",
     "npmlog": "^7.0.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.11"
