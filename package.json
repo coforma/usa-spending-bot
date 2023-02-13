@@ -35,7 +35,7 @@
     "mysql": "^2.18.1",
     "npmlog": "^7.0.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.11"
+    "typeorm": "^0.3.12"
   },
   "devDependencies": {
     "@types/http-cache-semantics": "^4.0.1",
