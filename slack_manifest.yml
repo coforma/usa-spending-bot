@@ -10,12 +10,16 @@ features:
     - command: /add-recipient
       url: https://your-website.com/slack/events
       description: Add recipient to track awards
-      usage_hint: "[recipient uuid]"
+      usage_hint: "[recipient uuid] [shortname]"
       should_escape: false
     - command: /list-latest-awards
       url: https://your-website.com/slack/events
       description: Shows 5 latest awards for a recipient
-      usage_hint: "[recipient-uuid]"
+      usage_hint: "[shortname]"
+      should_escape: false
+    - command: /list-tracked-recipients
+      url: https://your-website.com/slack/events
+      description: Shows all tracked recipients
       should_escape: false
     - command: /set-slack-channel
       url: https://your-website.com/slack/events

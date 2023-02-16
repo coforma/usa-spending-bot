@@ -4,6 +4,8 @@ import { createDataSource, DataSourceTypeOptions } from "./data-source.js";
 import { exit } from "process";
 import { addRecipient } from "./commands/add-recipient.js";
 import { listLatestAwards } from "./commands/list-latest-awards.js";
+import { listLatestAwardsAction } from "./actions/list-latest-awards.js";
+import { listTrackedRecipients } from "./commands/list-tracked-recipients.js";
 import { checkLatestAwards } from "./background-jobs/check-latest-awards.js";
 import { setSlackChannel } from "./commands/set-slack-channel.js";
 
@@ -40,6 +42,10 @@ const { SlackApp: app } = await import("./SlackApp.js");
 app.command("/set-slack-channel", setSlackChannel);
 app.command("/add-recipient", addRecipient);
 app.command("/list-latest-awards", listLatestAwards);
+app.command("/list-tracked-recipients", listTrackedRecipients);
+
+// load all the actions
+app.action({ action_id: 'list-latest-awards' }, listLatestAwardsAction);
 
 // run background job this limits the application to run on a single server for now
 checkLatestAwards(app);
