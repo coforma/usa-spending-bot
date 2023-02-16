@@ -29,35 +29,36 @@ export const listTrackedRecipients: SlackCommand = async ({ command, ack, say })
         {
           type: "divider",
         },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "| Name | Short Name | ID |",
+          },
+        },
+        {
+          type: "divider",
+        },
       ],
     };
 
     trackedRecipients.forEach((recipient, index) => {
       // create text for each recipient
-      const text = `*<https://www.usaspending.gov/recipient/${recipient.usaSpendingRecipientId}/latest|${recipient.name}>*\n Short Name: ${recipient.shortName}\n ID: ${recipient.usaSpendingRecipientId}`;
+      // const text = `*<https://www.usaspending.gov/recipient/${recipient.usaSpendingRecipientId}/latest|${recipient.name}>*\n Short Name: ${recipient.shortName}\n ID: ${recipient.usaSpendingRecipientId}`;
 
       // add a section block for each recipient
       blockMessage.blocks.push({
         type: "section",
-        text: {
-          type: "mrkdwn",
-          text,
+        text:
+          {
+            type: "mrkdwn",
+            text: `| ${recipient.name} | ${recipient.shortName ?? recipient.name} | ${recipient.id} |`
+          }
         },
-        "accessory": {
-          "type": "overflow",
-          "options": [
-            {
-              "text": {
-                "type": "plain_text",
-                "emoji": true,
-                "text": "List Latest Awards"
-              },
-              "action_id": "list-latest-awards",
-              "value": recipient.shortName
-            },
-          ],
-        },
-      } as any);
+        {
+          type: "divider",
+        }
+      );
     });
 
     await say(blockMessage);
