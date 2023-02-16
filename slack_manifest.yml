@@ -17,6 +17,10 @@ features:
       description: Shows 5 latest awards for a recipient
       usage_hint: "[recipient-uuid]"
       should_escape: false
+    - command: /list-tracked-recipients
+      url: https://your-website.com/slack/events
+      description: Shows all currently tracked recipients
+      should_escape: false
     - command: /set-slack-channel
       url: https://your-website.com/slack/events
       description: Automated Messages Slack Channel
