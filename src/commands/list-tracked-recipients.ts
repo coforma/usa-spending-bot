@@ -1,6 +1,7 @@
 import { TrackedRecipient } from "../entity/TrackedRecipient.js";
 import log from "npmlog";
 import { SlackCommand } from "../types/SlackCommand.js";
+import { UsaSpendingRecipient } from "../types/UsaSpending.js";
 
 // create a command to list recipients already added to the database
 export const listTrackedRecipients: SlackCommand = async ({ command, ack, say }) => {
@@ -16,7 +17,7 @@ export const listTrackedRecipients: SlackCommand = async ({ command, ack, say })
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Recipients:",
+            text: "| Name | Short Name | ID |",
           },
         },
         {
@@ -25,20 +26,20 @@ export const listTrackedRecipients: SlackCommand = async ({ command, ack, say })
       ],
     };
 
-    for (const recipient in savedRecipients) {
-      blockMessage.blocks.push(
-        {
-          type: "section",
-          text: {
-              type: "mrkdwn",
-              text: `*Recipient:* ${recipient.name}`
+    savedRecipients.forEach((recipient) => {
+      blockMessage.blocks.push({
+        type: "section",
+        text:
+          {
+            type: "mrkdwn",
+            text: `| ${recipient.name} | ${recipient.shortName ?? recipient.name} | ${recipient.id} |`
           }
         },
         {
           type: "divider",
         }
       );
-    }
+    });
 
     await say(blockMessage);
   } catch (error: unknown) {
