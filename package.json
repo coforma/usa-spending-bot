@@ -31,7 +31,7 @@
     "@slack/bolt": "^3.12.2",
     "better-sqlite3": "^8.1.0",
     "dotenv": "^16.0.3",
-    "got": "^12.5.3",
+    "got": "^12.6.0",
     "mysql": "^2.18.1",
     "npmlog": "^7.0.1",
     "reflect-metadata": "^0.1.13",
