@@ -28,7 +28,7 @@
     "node": ">=18.10.0"
   },
   "dependencies": {
-    "@slack/bolt": "^3.12.2",
+    "@slack/bolt": "^3.13.1",
     "better-sqlite3": "^8.4.0",
     "dotenv": "^16.0.3",
     "got": "^12.6.0",
