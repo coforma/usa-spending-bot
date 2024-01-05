@@ -24,7 +24,8 @@ if (isLocal) {
 
 // initialize the database
 try {
-  const type : DataSourceTypeOptions = process.env.ORM_TYPE === "mysql" ? "mysql" : "better-sqlite3"
+  const type: DataSourceTypeOptions =
+    process.env.ORM_TYPE === "mysql" ? "mysql" : "better-sqlite3";
   const AppDataSource = createDataSource(type);
   await AppDataSource.initialize();
 } catch (error: unknown) {

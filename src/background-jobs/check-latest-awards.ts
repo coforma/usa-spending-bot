@@ -47,9 +47,12 @@ export async function checkLatestAwards(app: App) {
           });
 
         if (latestAwardsFromApiNotInDb.length === 0) {
-          log.info("BACKGROUND_JOB", `No new awards found for recipient id: ${trackedRecipient.usaSpendingRecipientId}, name: ${trackedRecipient.name}`);
+          log.info(
+            "BACKGROUND_JOB",
+            `No new awards found for recipient id: ${trackedRecipient.usaSpendingRecipientId}, name: ${trackedRecipient.name}`
+          );
           continue;
-        } 
+        }
 
         // insert all the awards into the database
         const insertAwards = latestAwardsFromApiNotInDb.map((award) => {

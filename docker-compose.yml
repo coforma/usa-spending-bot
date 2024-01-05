@@ -1,5 +1,5 @@
 # Create docker compose file to run the container and a local mysql database
-version: '3.1'
+version: "3.1"
 
 services:
   db:

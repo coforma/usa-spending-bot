@@ -1,6 +1,6 @@
 {
   "name": "usa-spending-bot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bot that provides information about USASpending.gov data in Slack by tracking recipients.",
   "main": "dist/index.js",
   "type": "module",
@@ -25,21 +25,22 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=18.10.0"
+    "node": ">=18.16.0"
   },
   "dependencies": {
-    "@slack/bolt": "^3.12.2",
+    "@slack/bolt": "^3.13.1",
     "better-sqlite3": "^8.4.0",
-    "dotenv": "^16.0.3",
-    "got": "^12.6.0",
+    "dotenv": "^16.1.4",
+    "got": "^13.0.0",
     "mysql": "^2.18.1",
     "npmlog": "^7.0.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.14"
+    "typeorm": "^0.3.16"
   },
   "devDependencies": {
+    "@swc/core": "^1.3.62",
     "@types/http-cache-semantics": "^4.0.1",
-    "@types/node": "^18.13.0",
+    "@types/node": "^18.16.17",
     "@types/npmlog": "^4.1.4",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",

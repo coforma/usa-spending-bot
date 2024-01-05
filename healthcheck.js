@@ -1,9 +1,9 @@
-const http = require('http');
+const http = require("http");
 
 const options = {
-  host: 'localhost',
-  port: '3050',
-  path: '/ping',
+  host: "localhost",
+  port: "3050",
+  path: "/ping",
   timeout: 2000,
 };
 const request = http.request(options, (res) => {
@@ -14,7 +14,7 @@ const request = http.request(options, (res) => {
   }
 });
 // eslint-disable-next-line no-unused-vars
-request.on('error', (err) => {
+request.on("error", (err) => {
   process.exit(1);
 });
 request.end();
