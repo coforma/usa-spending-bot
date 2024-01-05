@@ -6,7 +6,7 @@ This Slackbot is built using Node.js and TypeScript, and it utilizes the API fro
 
 ## Prerequisites
 
-- nodejs v18.10
+- nodejs v18.14
 - npm
 
 ## Current Commands
