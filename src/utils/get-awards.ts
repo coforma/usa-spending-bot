@@ -42,7 +42,7 @@ export async function* getAwards(recipientUei: string, limit: number = 10) {
       {
         responseType: "json",
         json: jsonBody,
-      }
+      },
     );
 
     // check if the response is valid

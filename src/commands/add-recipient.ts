@@ -30,7 +30,7 @@ export const addRecipient: SlackCommand = async ({ command, ack, say }) => {
       `https://api.usaspending.gov/api/v2/recipient/${recipientId}`,
       {
         responseType: "json",
-      }
+      },
     );
 
     // check if the response is valid
@@ -69,7 +69,7 @@ export const addRecipient: SlackCommand = async ({ command, ack, say }) => {
     }
 
     await say(
-      `Added recipient: ${trackedRecipient.name} with id: ${recipientId} now tracking all past awards.`
+      `Added recipient: ${trackedRecipient.name} with id: ${recipientId} now tracking all past awards.`,
     );
 
     const awards: UsaSpendingAward["results"] = [];

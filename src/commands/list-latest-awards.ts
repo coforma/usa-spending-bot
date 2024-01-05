@@ -22,7 +22,7 @@ export const listLatestAwards: SlackCommand = async ({ command, ack, say }) => {
 
   if (!trackedRecipient) {
     await say(
-      `No recipient tracked with short name: ${shortName}, Please track the recipient first using \`add-recipient\` command`
+      `No recipient tracked with short name: ${shortName}, Please track the recipient first using \`add-recipient\` command`,
     );
     return;
   }
@@ -73,7 +73,7 @@ export const listLatestAwards: SlackCommand = async ({ command, ack, say }) => {
           {
             type: "mrkdwn",
             text: `*Award Amount:*\n \$${award["Award Amount"].toLocaleString(
-              "en-US"
+              "en-US",
             )}`,
           },
           {

@@ -24,7 +24,7 @@ export async function checkLatestAwards(app: App) {
             const prevStartDate = new Date(prev.startDate);
             const currentStartDate = new Date(current.startDate);
             return prevStartDate > currentStartDate ? prev : current;
-          }
+          },
         );
 
         // pull awards from the API
@@ -49,7 +49,7 @@ export async function checkLatestAwards(app: App) {
         if (latestAwardsFromApiNotInDb.length === 0) {
           log.info(
             "BACKGROUND_JOB",
-            `No new awards found for recipient id: ${trackedRecipient.usaSpendingRecipientId}, name: ${trackedRecipient.name}`
+            `No new awards found for recipient id: ${trackedRecipient.usaSpendingRecipientId}, name: ${trackedRecipient.name}`,
           );
           continue;
         }
@@ -139,7 +139,7 @@ export async function checkLatestAwards(app: App) {
         } else {
           log.warn(
             "check-latest-awards",
-            "No slack channel has been set up, message not sent to slack."
+            "No slack channel has been set up, message not sent to slack.",
           );
         }
       }

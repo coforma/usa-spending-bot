@@ -19,7 +19,7 @@ export class Award extends BaseEntity {
 
   @ManyToOne(
     () => TrackedRecipient,
-    (trackedRecipient) => trackedRecipient.awards
+    (trackedRecipient) => trackedRecipient.awards,
   )
   recipient!: TrackedRecipient;
 

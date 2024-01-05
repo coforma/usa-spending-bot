@@ -28,24 +28,24 @@
     "node": ">=18.16.0"
   },
   "dependencies": {
-    "@slack/bolt": "^3.13.1",
-    "better-sqlite3": "^8.4.0",
-    "dotenv": "^16.1.4",
-    "got": "^13.0.0",
+    "@slack/bolt": "^3.17.0",
+    "better-sqlite3": "^9.2.2",
+    "dotenv": "^16.3.1",
+    "got": "^12.6.1",
     "mysql": "^2.18.1",
     "npmlog": "^7.0.1",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.16"
+    "reflect-metadata": "^0.2.1",
+    "typeorm": "^0.3.19"
   },
   "devDependencies": {
-    "@swc/core": "^1.3.62",
-    "@types/http-cache-semantics": "^4.0.1",
-    "@types/node": "^18.16.17",
-    "@types/npmlog": "^4.1.4",
-    "nodemon": "^2.0.22",
-    "prettier": "^2.8.8",
-    "ts-node": "^10.9.1",
+    "@swc/core": "^1.3.102",
+    "@types/http-cache-semantics": "^4.0.4",
+    "@types/node": "^20.10.6",
+    "@types/npmlog": "^7.0.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.3.3"
   }
 }
