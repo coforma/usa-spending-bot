@@ -1,5 +1,5 @@
 # Build Stage 1
-FROM node:20.10-alpine3.19 AS base
+FROM node:21.6-alpine3.19 AS base
 
 WORKDIR /usr/src/app
 
@@ -24,7 +24,7 @@ COPY . .
 RUN npm run build
 
 # Build Stage 3 prod
-FROM node:20.10-alpine3.19 AS prod-stage
+FROM node:21.6-alpine3.19 AS prod-stage
 
 WORKDIR /usr/src/app
 
